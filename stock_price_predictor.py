@@ -1,3 +1,4 @@
+pip install -r requirements.txt
 import pandas as pd
 import numpy as np
 import yfinance as yf
@@ -7,6 +8,7 @@ import plotly.express as px
 import streamlit as st
 import datetime
 from datetime import date,timedelta
+
 
 
 
