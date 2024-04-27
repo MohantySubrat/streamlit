@@ -8,9 +8,6 @@ import streamlit as st
 import datetime
 from datetime import date,timedelta
 
-
-
-
 stocks = {"ONGC":"ONGC.NS","OIL":"OIL.NS","HPCL":"HINDPETRO.NS","BPCL":"BPCL.NS","SLB":"SLB","Weatherford":"WFRD","Halliburton":"HAL","Baker Hughes":"BKR","Exxon Mobil":"XOM","Shell":"SHEL"}
 keys = list(stocks.keys())
 demo_name = st.selectbox("Choose company",keys)
