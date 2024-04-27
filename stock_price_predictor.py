@@ -11,7 +11,7 @@ from datetime import date,timedelta
 
 
 
-stocks = {"ONGC":"ONGC.NS","OIL":"OIL.NS","HPCL":"HINDPETRO.NS","BPCL":"BPCL.NS","SLB":"SLB"}
+stocks = {"ONGC":"ONGC.NS","OIL":"OIL.NS","HPCL":"HINDPETRO.NS","BPCL":"BPCL.NS","SLB":"SLB","Weatherford":WFRD}
 keys = list(stocks.keys())
 demo_name = st.selectbox("Choose company",keys)
 
@@ -24,6 +24,7 @@ stock_OIL = yf.download(stocks['OIL'],start="2014-01-01",end=yesterday_date)
 stock_HINDPETRO = yf.download(stocks['HPCL'],start="2014-01-01",end=yesterday_date)
 stock_BPCL = yf.download(stocks['BPCL'],start="2014-01-01",end=yesterday_date)
 stock_SLB = yf.download(stocks['SLB'],start="2014-01-01",end=yesterday_date)
+stock_WFD = yf.download(stocks['WFRD'],start="2014-01-01",end=yesterday_date)
 
 
 stock_ONGC.reset_index(inplace=True)
@@ -31,6 +32,7 @@ stock_OIL.reset_index(inplace=True)
 stock_HINDPETRO.reset_index(inplace=True)
 stock_BPCL.reset_index(inplace=True)
 stock_SLB.reset_index(inplace=True)
+stock_WFD.reset_index(inplace = True)
 
 def forecast_func(input,col):
   input = input.rename(columns={'Date':'ds',col:'y'})
@@ -67,6 +69,12 @@ SLB_Close = forecast_func(stock_BPCL[['Date','Close']],'Close')
 SLB_High = forecast_func(stock_BPCL[['Date','High']],'High')
 SLB_Low = forecast_func(stock_BPCL[['Date','Low']],'Low')
 
+WFD_Open = forecast_func(stock_WFD[['Date','Open']],'Open')
+WFD_Close = forecast_func(stock_WFD[['Date','Close']],'Close')
+WFD_High = forecast_func(stock_WFD[['Date','High']],'High')
+WFD_Low = forecast_func(stock_WFD[['Date','Low']],'Low')
+
+
 
 forecast_table_ONGC = pd.merge((pd.merge((pd.merge(ONGC_Open,ONGC_Close,on='Date')),ONGC_Low,on='Date')),ONGC_High,on='Date')
 forecast_table_ONGC['Company'] = 'ONGC'
@@ -78,6 +86,8 @@ forecast_table_BPCL = pd.merge((pd.merge((pd.merge(BPCL_Open,BPCL_Close,on='Date
 forecast_table_BPCL['Company'] = 'BPCL'
 forecast_table_SLB = pd.merge((pd.merge((pd.merge(SLB_Open,SLB_Close,on='Date')),SLB_Low,on='Date')),SLB_High,on='Date')
 forecast_table_SLB['Company'] = 'SLB'
+forecast_table_WFD = pd.merge((pd.merge((pd.merge(WFD_Open,WFD_Close,on='Date')),WFD_Low,on='Date')),WFD_High,on='Date')
+forecast_table_SLB['Company'] = 'Weatherford'
 
 
 
