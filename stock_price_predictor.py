@@ -11,7 +11,7 @@ from datetime import date,timedelta
 
 
 
-stocks = {"ONGC":"ONGC.NS","OIL":"OIL.NS","HPCL":"HINDPETRO.NS","BPCL":"BPCL.NS","SLB"}
+stocks = {"ONGC":"ONGC.NS","OIL":"OIL.NS","HPCL":"HINDPETRO.NS","BPCL":"BPCL.NS","SLB":"SLB"}
 keys = list(stocks.keys())
 demo_name = st.selectbox("Choose company",keys)
 
